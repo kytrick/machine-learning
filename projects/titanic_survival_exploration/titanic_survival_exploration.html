@@ -12126,7 +12126,7 @@ The <code>predictions_0</code> function below will always predict that a passeng
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[101]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">predictions_0</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -12136,7 +12136,7 @@ The <code>predictions_0</code> function below will always predict that a passeng
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">passenger</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         
         <span class="c1"># Predict the survival of &#39;passenger&#39;</span>
-        <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     
     <span class="c1"># Return our predictions</span>
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
@@ -12163,7 +12163,7 @@ The <code>predictions_0</code> function below will always predict that a passeng
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[102]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">outcomes</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
@@ -12179,7 +12179,7 @@ The <code>predictions_0</code> function below will always predict that a passeng
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Predictions have an accuracy of 38.38%.
+<pre>Predictions have an accuracy of 61.62%.
 </pre>
 </div>
 </div>
@@ -12193,7 +12193,7 @@ The <code>predictions_0</code> function below will always predict that a passeng
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong> <em>38.38%</em></p>
+<p><strong>Answer:</strong> <em>61.62%</em></p>
 
 </div>
 </div>
@@ -13283,6 +13283,7 @@ Make sure to keep track of the various features and conditions you tried before 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer</strong>: 80.47%</p>
+<p><em>In order to achieve over 80% accuracy, I started out trying to figure out which attributes would cause a male passenger to survive.  I searched by age, pclass, parch, sibsp, etc and I didn't find any one factor that influenced survival by enough of a margin to make a meaningful difference.  Of those listed however, a better pclass did help with survivability across most age groups.  In the end, though, in order to meet the target accuracy percentage, I looked to the female pagessengers.  I was able to carve out an age and class slice that resulted in death rather than survival most of the time for the female passengers.  It's nice to think that even in the face of a great loss of life, humans rallied to the young and made sacrifices knowing for their survival.</em></p>
 
 </div>
 </div>
