@@ -11923,7 +11923,7 @@ Standard deviation of prices: $165,171.13
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: the MDEV will go up with an increase in RM or PTRATIO.  MDEV will go down with an increase of LSTAT</strong></p>
+<p><strong>Answer: the MDEV will go up with an increase in RM or PTRATIO because having more rooms and teaching ratio are considered desirable.  MDEV will go down with an increase of LSTAT because lower status neighbors are undesirable</strong></p>
 
 </div>
 </div>
@@ -12130,7 +12130,7 @@ Standard deviation of prices: $165,171.13
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: Splitting the data into training and testing subsets could position some interesting or outlying points into one set alone.  The worst case would be if the starting material is sorted before dividing into sets. It's nice that sklean shuffles this data for us.  Not having a way to test your model means that you can't check if your predictions still work.</strong></p>
+<p><strong>Answer: Splitting the data into training and testing subsets could position some interesting or outlying points into one set alone.  The worst case would be if the starting material is sorted before dividing into sets. It's nice that sklean shuffles this data for us.  Not having a way to test your model means that you can't check if your predictions still work. It is important that the two data sets for training and testing are separate and independent of each other or the result will be biased.</strong></p>
 
 </div>
 </div>
@@ -13244,10 +13244,9 @@ sxbwYMvMzMzMzKwFPNgyMzMzMzNrAQ+2zMzMzMzMWuD/AXsSk4tOvSkVAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: I haven't found where we cover "depth" in the course material, but I'll do my best from context.<br>
-    When max_depth=1 you see both the training and testing scores to be similar, and both close to the middle of the score range (0.5).
-    When max_depth=3 you start to see the two test scores improve, while staying close to each other. As more data points are added the two tests converge even more.  This looks like the best depth value to use for this data set.
-    When max_depth=6 or 10 you see the two scores drifting further away from each other, even as more data points are added. This indicates "overfitting" of the model.  The high training score isn't indicitive of a good fit if the testing score isn't up there with it. </strong></p>
+<p><strong>Answer:<br>
+    When max_depth=3 you start to see the training score decrease and the testing score increase, while staying close to each other. As data points are added the two tests converge even more. You wont see improvements in the model by testing additional training points as the training/testing curves have been in synch with each other since about 200 training points.  As for the curves' trajectories, they are converging from below, to a value of about 0.8, that is, specifically, the testing score is getting close to the training score.  This looks like the best depth value to use for this data set.  This sweet spot is neither an over- or underfit.        
+ </strong></p>
 
 </div>
 </div>
@@ -13726,7 +13725,8 @@ Hp8xxph2xXp8xhhj2hVLfMYYY9oVS3zGGGPaFUt8xhhj2hVLfMYYY9oVS3zGGGPalf8HhV8FoK68
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: When the model is trained with a maximum depth of 1, the model has high bias but low variance (underfitting). When the model is trained with a maximum depth of 10, the opposite is true:  the model has low bias but high variance. (overfitting).   </strong></p>
+<p><strong>Answer: Bias occurs when a model has enough data but is not complex enough to capture the underlying relationships.  When the model is trained with a maximum depth of 1, the model has high bias but low variance (underfitting). This can be seen by the looking at the two scores on the graph when the maximum depth is 1.  The two scores in this case are both around 0.4.  Since the scores are very similar to each other, this is low variance.  However, the scores are biased toward a low value, thus the high bias. 
+When the model is trained with a maximum depth of 10, the opposite is true:  the model has low bias but high variance (overfitting). This can be seen by looking at the graph where maximum depth is 10.  The scores are very different from each other, one close to 1.0, the other close to 0.7, which means high variance.  With such high variance, there is low bias.  </strong></p>
 
 </div>
 </div>
@@ -13798,7 +13798,7 @@ Hp8xxph2xXp8xhhj2hVLfMYYY9oVS3zGGGPaFUt8xhhj2hVLfMYYY9oVS3zGGGPalf8HhV8FoK68
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: When optimizing a model, you have to check how good of a fit an optimization is.  Without being able to check this, you wont know whether you've optimized or overfit.  With K-fold cross-validation you don't "waste" data by setting it aside for validation.  Instead the data is partitioned such that subsequent slices of the data take their turn serving as usable data and validation data. </strong></p>
+<p><strong>Answer: When optimizing a model, you have to check how good of a fit an optimization is.  Without being able to check this, you wont know whether you've optimized or overfit.  With K-fold cross-validation you don't "waste" data by setting it aside for validation.  Instead the data is partitioned such that subsequent slices of the data take their turn serving as usable data and validation data. If the number of slices of data is "K", and each of those slices takes his turn at performing the role of "validation set", then you have to do K rounds of computation.   The final  K-fold cross-validation score is calculated by averaging the constituent scores.  K-fold CV helps grid search find the best model by identifying which the has the best score, and then using model on all the data. </strong></p>
 
 </div>
 </div>
@@ -13833,7 +13833,7 @@ Hp8xxph2xXp8xhhj2hVLfMYYY9oVS3zGGGPaFUt8xhhj2hVLfMYYY9oVS3zGGGPalf8HhV8FoK68
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;make_scorer&#39;, &#39;DecisionTreeRegressor&#39;, and &#39;GridSearchCV&#39;</span>
@@ -13852,7 +13852,7 @@ Hp8xxph2xXp8xhhj2hVLfMYYY9oVS3zGGGPaFUt8xhhj2hVLfMYYY9oVS3zGGGPalf8HhV8FoK68
     <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
 
     <span class="c1"># TODO: Create a dictionary for the parameter &#39;max_depth&#39; with a range from 1 to 10</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)}</span>
 
     <span class="c1"># TODO: Transform &#39;performance_metric&#39; into a scoring function using &#39;make_scorer&#39; </span>
     <span class="c1">#  &#39;performance_metric&#39; comes from step 1 above, and is the R^2 score.  </span>
@@ -14029,7 +14029,7 @@ Standard deviation of prices: $165,171.13</code></p>
 <p><code>Predicted selling price for Client 1's home: $403,025.00
 Predicted selling price for Client 2's home: $237,478.72
 Predicted selling price for Client 3's home: $931,636.36</code></p>
-<p><strong>The selling prices we generated make sense.   The first house is close to the mean, the second house is less than the mean, but that can be explained by its poverty level and student-teacer ratio.  The third house looks like a bit of an outlier, but it's a good approximation, I'm glad the model worked so well.   </strong></p>
+<p><strong>The selling prices we generated make sense.   The first house is close to the mean, the second house is less than the mean, but that can be explained by its poverty level and student-teacer ratio.  The third house looks like a bit of an outlier, but it's a good approximation, I'm glad the model worked so well. The price we computed is reasonable because it has a very large number of rooms (8), very low poverty (3%) and a fantastic student to teacher ratio (12:1). Since this third house is all around desirable, it is expected that its price will be high.  </strong></p>
 
 </div>
 </div>
